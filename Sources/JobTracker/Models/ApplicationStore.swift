@@ -21,7 +21,9 @@ final class ApplicationStore: ObservableObject {
 
     func update(_ application: JobApplication) {
         guard let index = applications.firstIndex(where: { $0.id == application.id }) else { return }
-        applications[index] = application
+        var updated = application
+        updated.updatedAt = .now
+        applications[index] = updated
         save()
     }
 

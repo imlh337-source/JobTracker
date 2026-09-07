@@ -23,6 +23,12 @@ struct JobTrackerApp: App {
                 }
                 .keyboardShortcut("p", modifiers: .command)
             }
+            CommandGroup(after: .saveItem) {
+                Button("Export CSV…") {
+                    NotificationCenter.default.post(name: .exportCSVRequested, object: nil)
+                }
+                .keyboardShortcut("e", modifiers: .command)
+            }
         }
     }
 }
@@ -30,4 +36,5 @@ struct JobTrackerApp: App {
 extension Notification.Name {
     static let newApplicationRequested = Notification.Name("newApplicationRequested")
     static let printApplicationsRequested = Notification.Name("printApplicationsRequested")
+    static let exportCSVRequested = Notification.Name("exportCSVRequested")
 }

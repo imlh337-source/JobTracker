@@ -19,6 +19,7 @@ struct JobApplication: Codable, Identifiable, Equatable {
     var dateApplied: Date = .now
     var link: String = ""
     var createdAt: Date = .now
+    var updatedAt: Date = .now
 
     init(
         id: UUID = UUID(),
@@ -28,7 +29,8 @@ struct JobApplication: Codable, Identifiable, Equatable {
         status: ApplicationStatus = .applied,
         dateApplied: Date = .now,
         link: String = "",
-        createdAt: Date = .now
+        createdAt: Date = .now,
+        updatedAt: Date = .now
     ) {
         self.id = id
         self.company = company
@@ -38,6 +40,7 @@ struct JobApplication: Codable, Identifiable, Equatable {
         self.dateApplied = dateApplied
         self.link = link
         self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
 
     init(from decoder: Decoder) throws {
@@ -50,5 +53,6 @@ struct JobApplication: Codable, Identifiable, Equatable {
         dateApplied = try container.decodeIfPresent(Date.self, forKey: .dateApplied) ?? .now
         link = try container.decodeIfPresent(String.self, forKey: .link) ?? ""
         createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt) ?? .now
+        updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt) ?? dateApplied
     }
 }
